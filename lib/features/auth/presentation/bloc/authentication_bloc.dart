@@ -39,6 +39,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
           ),
         );
       } else {
+        event.onError(result.left.errorMessage ?? 'Неизвестная ошибка');
         emit(state.copyWith(loginStatus: FormzSubmissionStatus.failure));
       }
     }

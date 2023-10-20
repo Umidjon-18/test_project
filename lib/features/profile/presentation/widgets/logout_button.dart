@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:test_project/assets/colors/app_colors.dart';
 import 'package:test_project/assets/styles/text_style.dart';
 import 'package:test_project/features/profile/presentation/widgets/logout_dialog.dart';
@@ -27,6 +28,7 @@ class LogoutButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
+          HapticFeedback.heavyImpact();
           showCupertinoModalPopup<void>(
             context: context,
             builder: (BuildContext context) => const LogoutDialog(),

@@ -16,30 +16,18 @@ class AuthenticationDataSourceImpl implements AuthenticationDataSource {
   @override
   Future<LoginResponseModel> login(LoginParams params) async {
     try {
-      //Temporary: because API is local
-      return LoginResponseModel(
-        tokens: const TokenEntity(
-          accesToken: 'accesToken',
-          refreshToken: 'refreshToken',
-        ),
-        user: const UserDataEntity(
-          id: 23,
-          email: 'umidjonxomidjonovich@gmail.com',
-          nickname: 'Umidjon Yoqubov',
-        ),
+      final response = await dio.post(
+        '/auth/login/',
+        data: params.toJson(),
       );
-      // final response = await dio.post(
-      //   '/auth/login/',
-      //   data: params.toJson(),
-      // );
-      // if (response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
-      //   return LoginResponseModel.fromJson(response.data as Map<String, dynamic>);
-      // } else {
-      //   throw ServerException(
-      //     statusCode: response.statusCode ?? 400,
-      //     errorMessage: "server exception",
-      //   );
-      // }
+      if (response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
+        return LoginResponseModel.fromJson(response.data as Map<String, dynamic>);
+      } else {
+        throw ServerException(
+          statusCode: response.statusCode ?? 400,
+          errorMessage: "server exception",
+        );
+      }
     } on ServerException catch (e) {
       throw ServerException(statusCode: e.statusCode, errorMessage: e.errorMessage);
     } on DioException {

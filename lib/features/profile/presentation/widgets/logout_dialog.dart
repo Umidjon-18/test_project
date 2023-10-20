@@ -22,7 +22,6 @@ class LogoutDialog extends StatelessWidget {
         CupertinoDialogAction(
           isDestructiveAction: true,
           onPressed: () {
-            HapticFeedback.heavyImpact();
             Navigator.pop(context);
             context.read<AuthenticationBloc>().add(LogoutEvent());
           },

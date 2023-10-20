@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
         onGenerateRoute: (settings) => Routes.generateRoutes(settings),
         builder: (context, child) {
           return BlocListener<AuthenticationBloc, AuthenticationState>(
+            listenWhen: (previous, current) => previous.authenticationStatus!=current.authenticationStatus,
             listener: (context, state) {
               switch (state.authenticationStatus) {
                 case AuthenticationStatus.authenticated:

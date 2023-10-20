@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_project/assets/colors/app_colors.dart';
 import 'package:test_project/assets/styles/text_style.dart';
@@ -28,6 +29,7 @@ class LoginButton extends StatelessWidget {
                   emailOrNickname: loginEmailController.text,
                   password: passwordController.text,
                   onError: (errorMessage) {
+                    HapticFeedback.heavyImpact();
                     showCupertinoModalPopup(
                       context: context,
                       builder: (context) {

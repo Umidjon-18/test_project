@@ -30,20 +30,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CupertinoTextField.borderless(
-              controller: loginEmailController,
-              placeholder: 'Логин или почта',
-              decoration: const BoxDecoration(color: AppColors.white),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 19),
-              placeholderStyle: AppTextStyles.defaultTextStyle.copyWith(color: AppColors.secondaryText),
-            ),
-            const Divider(height: 1, indent: 16, endIndent: 16),
-            CupertinoTextField.borderless(
-              controller: passwordController,
-              placeholder: 'Пароль',
-              decoration: const BoxDecoration(color: AppColors.white),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 19),
-              placeholderStyle: AppTextStyles.defaultTextStyle.copyWith(color: AppColors.secondaryText),
+            ColoredBox(
+              color: AppColors.white,
+              child: Column(children: [
+                CupertinoTextField.borderless(
+                  controller: loginEmailController,
+                  placeholder: 'Логин или почта',
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 19),
+                  placeholderStyle: AppTextStyles.defaultTextStyle.copyWith(color: AppColors.secondaryText),
+                ),
+                const Divider(height: 1, indent: 16, endIndent: 16),
+                CupertinoTextField.borderless(
+                  controller: passwordController,
+                  placeholder: 'Пароль',
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 19),
+                  placeholderStyle: AppTextStyles.defaultTextStyle.copyWith(color: AppColors.secondaryText),
+                ),
+              ]),
             ),
             LoginButton(
               loginEmailController: loginEmailController,
@@ -56,4 +59,3 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 }
-
